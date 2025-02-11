@@ -1,0 +1,4 @@
+# Delete the obsolete /etc/environment.d/90qtwebengine-dictionaries-path.conf
+# This code can be removed in trixie +1.
+# See <https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1092726>
+rm_conffile /etc/environment.d/90qtwebengine-dictionaries-path.conf 5.15.17+dfsg2-3~
