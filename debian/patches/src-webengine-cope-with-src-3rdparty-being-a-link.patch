@@ -1,0 +1,25 @@
+Description: src/webengine: cope with src/3rdparty being a link
+ Due to our special requirement, we have to use multiple orig tarballs
+ which turns src/3rdparty/ into qtwebengine-chromuim/ directory, and
+ make src/3rdparty/ becomes symlink. This means refering to tools/ from
+ src/3rdparty/ using ../../ doesn't work. Thus, putting the full path
+ into the invocation instead.
+Author: Ratchanan Srirattanamet <ratchanan@ubports.com>
+Origin: vendor
+Forwarded: not-needed
+Last-Update: 2022-04-10
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/src/webengine/module.pro
++++ b/src/webengine/module.pro
+@@ -77,8 +77,8 @@
+     chromium_attributions.commands = \
+         cd $$shell_quote($$shell_path($$PWD/../3rdparty)) && \
+         $$python chromium/tools/licenses.py \
+-        --file-template ../../tools/about_credits.tmpl \
+-        --entry-template ../../tools/about_credits_entry.tmpl credits \
++        --file-template $$shell_quote($$shell_path($$PWD/../../tools/about_credits.tmpl)) \
++        --entry-template $$shell_quote($$shell_path($$PWD/../../tools/about_credits_entry.tmpl)) credits \
+         $$shell_quote($$shell_path($$OUT_PWD/chromium_attributions.qdoc))
+     chromium_attributions.CONFIG += phony
+ 

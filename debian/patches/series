@@ -29,4 +29,5 @@ ninja-1.12.patch
 mips64el-v8-regexp.patch
 
 # Ubports patch
+src-webengine-cope-with-src-3rdparty-being-a-link.patch
 hybris-omx.patch
